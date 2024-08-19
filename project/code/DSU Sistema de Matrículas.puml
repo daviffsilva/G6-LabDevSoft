@@ -1,0 +1,34 @@
+@startuml
+
+actor "Secretaria" as Secretaria
+actor "Aluno" as Aluno
+actor "Professor" as Professor
+
+usecase "Gerar Currículo" as UC_GerarGrade
+usecase "Gerir Informações de Disciplinas" as UC_GerirDisciplinas
+usecase "Gerir Informações de Professores" as UC_GerirProfessores
+usecase "Gerir Informações de Alunos" as UC_GerirAlunos
+usecase "Efetuar Matrícula" as UC_EfetuarMatricula
+usecase "Cancelar Matrícula" as UC_CancelarMatricula
+usecase "Efetuar Login" as UC_EfetuarLogin
+usecase "Notificar Sistema de Cobranças" as UC_NotificarCobrancas
+usecase "Consultar Alunos Matriculados" as UC_ConsultarAlunosMatriculados
+usecase "Verificar Ativação de Disciplina" as UC_VerificarAtivacaoDisciplina
+
+Secretaria --> UC_GerarGrade
+Secretaria --> UC_GerirDisciplinas
+Secretaria --> UC_GerirProfessores
+Secretaria --> UC_GerirAlunos
+Secretaria --> UC_EfetuarLogin
+
+Aluno --> UC_EfetuarMatricula
+Aluno --> UC_CancelarMatricula
+Aluno --> UC_EfetuarLogin
+
+Professor --> UC_ConsultarAlunosMatriculados
+Professor --> UC_EfetuarLogin
+
+UC_EfetuarMatricula --> UC_VerificarAtivacaoDisciplina : <<include>>
+UC_EfetuarMatricula --> UC_NotificarCobrancas : <<include>>
+
+@enduml
