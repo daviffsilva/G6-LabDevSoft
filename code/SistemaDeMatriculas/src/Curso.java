@@ -16,27 +16,19 @@ public class Curso {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public int getNumeroDeCreditos() {
         return numeroDeCreditos;
-    }
-
-    public void setNumeroDeCreditos(int numeroDeCreditos) {
-        this.numeroDeCreditos = numeroDeCreditos;
     }
 
     public List<Disciplina> getDisciplinas() {
         return disciplinas;
     }
 
-    public void setDisciplinas(List<Disciplina> disciplinas) {
-        this.disciplinas = disciplinas;
+    public void adicionarDisciplina(Disciplina disciplina) {
+        // stub
     }
 
-    public void adicionarDisciplina(Disciplina disciplina) {
+    public void removerDisciplina(Disciplina disciplina) {
         // stub
     }
 }

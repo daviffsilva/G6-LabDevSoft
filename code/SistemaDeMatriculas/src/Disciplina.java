@@ -5,6 +5,7 @@ public class Disciplina {
     private String nome;
     private int codigo;
     private int creditos;
+    private boolean ativa;
     private List<Aluno> alunosInscritos;
     private Professor professor;
 
@@ -20,40 +21,20 @@ public class Disciplina {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public int getCodigo() {
         return codigo;
-    }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
     }
 
     public int getCreditos() {
         return creditos;
     }
 
-    public void setCreditos(int creditos) {
-        this.creditos = creditos;
-    }
-
     public List<Aluno> getAlunosInscritos() {
         return alunosInscritos;
     }
 
-    public void setAlunosInscritos(List<Aluno> alunosInscritos) {
-        this.alunosInscritos = alunosInscritos;
-    }
-
     public Professor getProfessor() {
         return professor;
-    }
-
-    public void setProfessor(Professor professor) {
-        this.professor = professor;
     }
 
     public boolean inscreverAluno(Aluno aluno) {
@@ -66,7 +47,7 @@ public class Disciplina {
         return false;
     }
 
-    public boolean verificarAtividade() {
+    public boolean verificarAtivacao() {
         // stub
         return false;
     }
