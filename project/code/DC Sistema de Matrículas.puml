@@ -1,0 +1,88 @@
+@startuml
+
+' CONFIRMAR: Usar interface?
+abstract class Usuario {
+    -String login
+    -String email
+    -String senha
+    +boolean autenticar(String senha)
+}
+
+
+' CONFIRMAR: Necessário um N:M para guardar a matricula de semestres passados?
+' CONFIRMAR: O que difere disciplina alternativa/obrigatória
+' CONFIRMAR: Uma ou 2 listas para guardar as disciplinas?
+class Aluno extends Usuario {
+    -int matricula
+    -List<Disciplina> disciplinasObrigatorias
+    -List<Disciplina> disciplinasAlternativas
+    +void efetuarMatricula(Disciplina disciplina)
+    +void cancelarMatricula(Disciplina disciplina)
+}
+
+
+class Professor extends Usuario {
+    -int idProfessor
+    -String nome
+    +List<Aluno> consultarAlunosMatriculados(Disciplina disciplina)
+}
+
+' CONFIRMAR: Pode existir mais de um professor por matéria?
+' CONFIRMAR: Necessário mínimo?
+class Disciplina {
+    -String nome
+    -String codigo
+    -int creditos
+    -int minAlunos = 3
+    -int maxAlunos = 60
+    -boolean ativa
+    -List<Aluno> alunosMatriculados
+    -Professor professor
+    +void inscreverAluno(Aluno aluno)
+    +void cancelarInscricao(Aluno aluno)
+    +void verificarAtivacao()
+}
+
+class Curso {
+    -String nome
+    -int numeroDeCreditos
+    -List<Disciplina> disciplinas
+    +void adicionarDisciplina(Disciplina disciplina)
+    +void removerDisciplina(Disciplina disciplina)
+}
+
+class Secretaria {
+    +Curriculo criarCurriculo(Semestre semestre)
+    +void adicionarDisciplinaAoCurso(Curso curso, Disciplina disciplina)
+    +void removerDisciplinaDoCurso(Curso curso, Disciplina disciplina)
+    +void registrarProfessor(Professor professor)
+    +void registrarAluno(Aluno aluno)
+}
+
+class SistemaDeCobrancas {
+    +void notificarCobranca(Aluno aluno)
+}
+
+class Semestre {
+    -int ano
+    -int periodo
+    -List<Curso> cursos
+    -Curriculo curriculo
+}
+
+' CONFIRMAR: 1 Curriculo define todas as matérias de todos os cursos ou um Curriculo define o semestre de um curso?
+class Curriculo {
+    -List<Disciplina> disciplinas
+    +void adicionarDisciplina(Disciplina disciplina)
+    +void removerDisciplina(Disciplina disciplina)
+}
+
+Aluno "0..*" -- "1..*" Disciplina : "matriculado"
+Disciplina "1" -- "1..*" Professor : "ministrada por"
+Curso "1" -- "0..*" Disciplina : "composta por"
+Semestre "1" -- "1" Curriculo : "define"
+Secretaria "1" -- "*" Curriculo : "cria"
+SistemaDeCobrancas <-- Aluno : "notifica"
+Disciplina "1" -- "0..*" Aluno : "inscritos"
+
+@enduml
