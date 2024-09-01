@@ -5,6 +5,10 @@ public class Professor extends Usuario {
     private int idProfessor;
     private List<Disciplina> disciplinasLecionadas;
 
+    public Professor(){
+        
+    }
+
     public Professor(String nome, String email, String senha, int idProfessor) {
         super(nome, email, senha);
         this.idProfessor = idProfessor;

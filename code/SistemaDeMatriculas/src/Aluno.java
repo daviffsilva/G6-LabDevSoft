@@ -6,6 +6,10 @@ public class Aluno extends Usuario {
     private List<Disciplina> disciplinasObrigatorias;
     private List<Disciplina> disciplinasAlternativas;
 
+    public Aluno(){
+        
+    }
+     
     public Aluno(String nome, String email, String senha, int matricula) {
         super(nome, email, senha);
         this.matricula = matricula;
