@@ -4,15 +4,14 @@ import java.util.List;
 public class Disciplina {
     private String nome;
     private int codigo;
-    private int creditos;
     private boolean ativa;
     private List<Aluno> alunosInscritos;
     private Professor professor;
+    private int minimoAlunosParaAtivacao = 3;
 
-    public Disciplina(String nome, int codigo, int creditos, Professor professor) {
+    public Disciplina(String nome, int codigo, Professor professor) {
         this.nome = nome;
         this.codigo = codigo;
-        this.creditos = creditos;
         this.professor = professor;
         this.alunosInscritos = new ArrayList<>();
     }
@@ -25,10 +24,6 @@ public class Disciplina {
         return codigo;
     }
 
-    public int getCreditos() {
-        return creditos;
-    }
-
     public List<Aluno> getAlunosInscritos() {
         return alunosInscritos;
     }
@@ -37,18 +32,32 @@ public class Disciplina {
         return professor;
     }
 
+    public boolean getAtiva(){
+        return ativa;
+    }
+
     public boolean inscreverAluno(Aluno aluno) {
-        // stub
-        return false;
+        for (Aluno inscrito : alunosInscritos) {
+            if (inscrito.getMatricula() == aluno.getMatricula()) {
+                return false; 
+            }
+        }
+        alunosInscritos.add(aluno);
+        return true; 
     }
 
     public boolean cancelarInscricao(Aluno aluno) {
-        // stub
-        return false;
+        
+        for (Aluno inscrito : alunosInscritos) {
+            if (inscrito.getMatricula() == aluno.getMatricula()) {
+                alunosInscritos.remove(inscrito);
+                return true; 
+            }
+        }
+        return false; 
     }
 
     public boolean verificarAtivacao() {
-        // stub
-        return false;
+        return alunosInscritos.size() >= minimoAlunosParaAtivacao;
     }
 }

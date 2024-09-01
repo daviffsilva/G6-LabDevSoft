@@ -32,7 +32,13 @@ public class Professor extends Usuario {
     }
 
     public List<Aluno> listarAlunosPorDisciplina(Disciplina disciplina) {
-        // stub
-        return null;
+        List<Aluno> alunosCadastrados = new ArrayList<>();
+        
+        if (disciplina != null) {
+            alunosCadastrados = disciplina.getAlunosInscritos();
+        }
+        
+        return alunosCadastrados;
     }
+    
 }

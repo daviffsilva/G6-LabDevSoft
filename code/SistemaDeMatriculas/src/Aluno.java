@@ -6,10 +6,10 @@ public class Aluno extends Usuario {
     private List<Disciplina> disciplinasObrigatorias;
     private List<Disciplina> disciplinasAlternativas;
 
-    public Aluno(){
-        
+    public Aluno() {
+
     }
-     
+
     public Aluno(String nome, String email, String senha, int matricula) {
         super(nome, email, senha);
         this.matricula = matricula;
@@ -20,6 +20,7 @@ public class Aluno extends Usuario {
     public int getMatricula() {
         return matricula;
     }
+
     public List<Disciplina> getDisciplinasMatriculadas() {
         return disciplinasObrigatorias;
     }
@@ -28,11 +29,32 @@ public class Aluno extends Usuario {
         return disciplinasAlternativas;
     }
 
-    public void matricularDisciplina(Disciplina disciplina) {
-        // stub
+    public void matricularDisciplina(Disciplina disciplina, boolean obrigatoria, boolean periodo_matricula) {
+        if (periodo_matricula) {
+            if (obrigatoria) {
+                if (disciplinasObrigatorias.size() < 1 && !disciplinasObrigatorias.contains(disciplina)) {
+                    disciplinasObrigatorias.add(disciplina);
+                }
+            } else {
+                if (disciplinasAlternativas.size() < 2 && !disciplinasAlternativas.contains(disciplina)) {
+                    disciplinasAlternativas.add(disciplina);
+                }
+            }
+        } else {
+            System.out.println("Fora do período de matrículas.");
+        }
     }
 
-    public void cancelarMatricula(Disciplina disciplina) {
-        // stub
+    public void cancelarMatricula(Disciplina disciplina, boolean periodo_matricula) {
+        if (periodo_matricula) {
+            if (disciplinasObrigatorias.contains(disciplina)) {
+                disciplinasObrigatorias.remove(disciplina);
+            }
+            if (disciplinasAlternativas.contains(disciplina)) {
+                disciplinasAlternativas.remove(disciplina);
+            }
+        } else {
+            System.out.println("Fora do período de matrículas.");
+        }
     }
 }

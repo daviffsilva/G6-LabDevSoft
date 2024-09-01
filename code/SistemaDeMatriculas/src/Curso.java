@@ -24,11 +24,14 @@ public class Curso {
         return disciplinas;
     }
 
-    public void adicionarDisciplina(Disciplina disciplina) {
-        // stub
+    public void adicionarDisciplina(String nome, int codigo, Professor professor) {
+        Disciplina novaDisciplina = new Disciplina(nome, codigo, professor);
+        if (!disciplinas.contains(novaDisciplina)) {
+            disciplinas.add(novaDisciplina);
+        }
     }
 
     public void removerDisciplina(Disciplina disciplina) {
-        // stub
+        disciplinas.remove(disciplina);
     }
 }
