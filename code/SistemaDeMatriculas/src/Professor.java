@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Professor extends Usuario {
     private int idProfessor;
-    private List<Disciplina> disciplinasLecionadas;
+    private String nome;
 
     public Professor(){
         
@@ -12,7 +12,7 @@ public class Professor extends Usuario {
     public Professor(String nome, String email, String senha, int idProfessor) {
         super(nome, email, senha);
         this.idProfessor = idProfessor;
-        this.disciplinasLecionadas = new ArrayList<>();
+        this.nome = nome;
     }
 
     public int getIdProfessor() {
@@ -23,15 +23,15 @@ public class Professor extends Usuario {
         this.idProfessor = idProfessor;
     }
 
-    public List<Disciplina> getDisciplinasLecionadas() {
-        return disciplinasLecionadas;
+    public String nome getNome() {
+        return nome;
     }
 
-    public void setDisciplinasLecionadas(List<Disciplina> disciplinasLecionadas) {
-        this.disciplinasLecionadas = disciplinasLecionadas;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public List<Aluno> listarAlunosPorDisciplina(Disciplina disciplina) {
+    public List<Aluno> consultarAlunosPorDisciplina(Disciplina disciplina) {
         List<Aluno> alunosCadastrados = new ArrayList<>();
         
         if (disciplina != null) {
