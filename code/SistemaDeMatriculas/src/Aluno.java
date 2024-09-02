@@ -29,7 +29,7 @@ public class Aluno extends Usuario {
         return disciplinasAlternativas;
     }
 
-    public void matricularDisciplina(Disciplina disciplina, boolean obrigatoria, boolean periodo_matricula) {
+    public void efetuarMatricula(Disciplina disciplina, boolean obrigatoria, boolean periodo_matricula) {
         if (periodo_matricula) {
             if (obrigatoria) {
                 if (disciplinasObrigatorias.size() < 1 && !disciplinasObrigatorias.contains(disciplina)) {
