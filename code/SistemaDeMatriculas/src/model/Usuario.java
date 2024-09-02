@@ -1,7 +1,7 @@
 package model;
 
 abstract class Usuario {
-    protected String nome;
+    protected String login;
     protected String email;
     protected String senha;
 
@@ -9,13 +9,13 @@ abstract class Usuario {
         
     }
 
-    public Usuario(String nome, String email, String senha) {
-        this.nome = nome;
+    public Usuario(String login, String email, String senha) {
+        this.login = login;
         this.email = email;
         this.senha = senha;
     }
 
-    public boolean validarLogin(String senha) {
+    public boolean autenticar(String senha) {
         return this.senha.equals(senha);
     }
 }
