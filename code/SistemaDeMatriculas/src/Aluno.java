@@ -10,8 +10,8 @@ public class Aluno extends Usuario {
 
     }
 
-    public Aluno(String nome, String email, String senha, int matricula) {
-        super(nome, email, senha);
+    public Aluno(String login, String email, String senha, int matricula) {
+        super(login, email, senha);
         this.matricula = matricula;
         this.disciplinasObrigatorias = new ArrayList<>();
         this.disciplinasAlternativas = new ArrayList<>();
