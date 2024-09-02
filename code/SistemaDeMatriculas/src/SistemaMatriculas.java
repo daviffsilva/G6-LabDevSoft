@@ -1,4 +1,7 @@
-import java.time.LocalDate;
+import model.Aluno;
+import model.Curso;
+import model.Professor;
+
 import java.util.ArrayList;
 import java.util.List;
 

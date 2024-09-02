@@ -1,3 +1,5 @@
+package model;
+
 abstract class Usuario {
     protected String nome;
     protected String email;

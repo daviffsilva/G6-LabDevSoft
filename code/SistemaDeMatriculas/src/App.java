@@ -1,3 +1,5 @@
+import javax.xml.transform.Result;
+import java.sql.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -32,6 +34,21 @@ public class App {
 
         String email = scanner.nextLine();
         scanner.next();
+
+        DatabaseConnector connector;
+        try {
+            connector = DatabaseConnector.getInstance();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+            return;
+        }
+
+        Statement stmt = connector.getConnection().createStatement();
+        ResultSet resultSet = stmt.executeQuery("SELECT * FROM aluno");
+        System.out.println();
+        while(resultSet.next()){
+            System.out.println(resultSet.getString(2));
+        }
 
         if(tipoUser==1){
             //pesquisar aluno no banco
