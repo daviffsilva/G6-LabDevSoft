@@ -8,10 +8,6 @@ abstract class Usuario {
     +boolean autenticar(String senha)
 }
 
-
-' CONFIRMAR: Necessário um N:M para guardar a matricula de semestres passados?
-' CONFIRMAR: O que difere disciplina alternativa/obrigatória
-' CONFIRMAR: Uma ou 2 listas para guardar as disciplinas?
 class Aluno extends Usuario {
     -int matricula
     -List<Disciplina> disciplinasObrigatorias
@@ -27,20 +23,30 @@ class Professor extends Usuario {
     +List<Aluno> consultarAlunosMatriculados(Disciplina disciplina)
 }
 
-' CONFIRMAR: Pode existir mais de um professor por matéria?
-' CONFIRMAR: Necessário mínimo?
 class Disciplina {
     -String nome
     -String codigo
     -int creditos
+}
+
+class Turma {
+    -String nome
+    -String codigo
     -int minAlunos = 3
     -int maxAlunos = 60
-    -boolean ativa
+    -StatusDisciplina status
     -List<Aluno> alunosMatriculados
     -Professor professor
     +void inscreverAluno(Aluno aluno)
     +void cancelarInscricao(Aluno aluno)
     +void verificarAtivacao()
+}
+
+class StatusDisciplina {
+    +string MATRICULA_ABERTA
+    +string CANCELADA
+    +string INICIADA
+    +string TERMINADA
 }
 
 class Curso {
@@ -70,15 +76,14 @@ class Semestre {
     -Curriculo curriculo
 }
 
-' CONFIRMAR: 1 Curriculo define todas as matérias de todos os cursos ou um Curriculo define o semestre de um curso?
 class Curriculo {
     -List<Disciplina> disciplinas
     +void adicionarDisciplina(Disciplina disciplina)
     +void removerDisciplina(Disciplina disciplina)
 }
 
-Aluno "0..*" -- "1..*" Disciplina : "matriculado"
-Disciplina "1" -- "1..*" Professor : "ministrada por"
+Aluno "0..*" -- "1..*" Turma : "matriculado"
+Turma "1" -- "1..*" Professor : "ministrada por"
 Curso "1" -- "0..*" Disciplina : "composta por"
 Semestre "1" -- "1" Curriculo : "define"
 Secretaria "1" -- "*" Curriculo : "cria"

@@ -1,3 +1,7 @@
+package model;
+
+import controller.CursoController;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,11 +28,13 @@ public class Curso {
         return disciplinas;
     }
 
-    public void adicionarDisciplina(Disciplina disciplina) {
-        // stub
+    public void adicionarDisciplina(String nome, int codigo, Professor professor) {
+        CursoController controller = new CursoController();
+        controller.adicionarDisciplina(nome, codigo, professor);
     }
 
     public void removerDisciplina(Disciplina disciplina) {
-        // stub
+        CursoController controller = new CursoController();
+        controller.removerDisciplina(disciplina);
     }
 }

@@ -1,14 +1,20 @@
+package model;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Professor extends Usuario {
     private int idProfessor;
-    private List<Disciplina> disciplinasLecionadas;
+    private String nome;
+
+    public Professor(){
+        
+    }
 
     public Professor(String nome, String email, String senha, int idProfessor) {
         super(nome, email, senha);
         this.idProfessor = idProfessor;
-        this.disciplinasLecionadas = new ArrayList<>();
+        this.nome = nome;
     }
 
     public int getIdProfessor() {
@@ -19,16 +25,16 @@ public class Professor extends Usuario {
         this.idProfessor = idProfessor;
     }
 
-    public List<Disciplina> getDisciplinasLecionadas() {
-        return disciplinasLecionadas;
+    public String getNome() {
+        return nome;
     }
 
-    public void setDisciplinasLecionadas(List<Disciplina> disciplinasLecionadas) {
-        this.disciplinasLecionadas = disciplinasLecionadas;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public List<Aluno> listarAlunosPorDisciplina(Disciplina disciplina) {
-        // stub
-        return null;
+    public List<Aluno> consultarAlunosPorTurma(Turma turma) {
+        return turma.getListAlunos();
     }
+    
 }
