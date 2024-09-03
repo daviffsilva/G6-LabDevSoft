@@ -6,7 +6,7 @@ import java.util.List;
 public class Disciplina {
     private String nome;
     private String codigo;
-    private int creditos
+    private int creditos;
 
     public Disciplina(String nome, String codigo, int creditos) {
         this.nome = nome;
@@ -22,7 +22,7 @@ public class Disciplina {
         return codigo;
     }
 
-    public int creditos getCreditos() {
+    public int getCreditos() {
         return creditos;
     }
 }

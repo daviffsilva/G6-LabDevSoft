@@ -1,4 +1,9 @@
-import javax.xml.transform.Result;
+import controller.AlunoController;
+import controller.ProfessorController;
+import controller.UsuarioController;
+import model.Aluno;
+import util.DatabaseConnector;
+
 import java.sql.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -16,7 +21,8 @@ public class App {
 
         while (true) {
             try {
-                System.out.print("Selecione o tipo de usuario:\n1-Aluno\n2-Professor\n");
+                System.out.print("Selecione o tipo de usuario:\n1 - Aluno\n2 - Professor\n");
+                System.out.print("Tipo de usuário: ");
                 tipoUser = scanner.nextInt();
 
                 if (tipoUser != 1 && tipoUser != 2) {
@@ -29,34 +35,31 @@ public class App {
                 scanner.next();
             }
         }
-        
-        System.out.println("Digite seu Email: ");
+        scanner.nextLine();
+        while(true){
+            System.out.print("Digite seu Email: ");
+            String email = scanner.nextLine();
 
-        String email = scanner.nextLine();
-        scanner.next();
+            System.out.print("Digite sua senha: ");
 
-        DatabaseConnector connector;
-        try {
-            connector = DatabaseConnector.getInstance();
-        }catch(SQLException ex){
-            ex.printStackTrace();
-            return;
+            String senha = scanner.nextLine();
+
+            UsuarioController controller;
+            if(tipoUser==1){
+                controller = new AlunoController();
+            }
+            else{
+                controller = new ProfessorController();
+            }
+
+            boolean autenticado = controller.autenticar(email, senha);
+
+            if(autenticado){
+                System.out.println("Usuário autenticado!");
+                break;
+            }else{
+                System.out.println("Email ou senha incorreto(s)!");
+            }
         }
-
-        Statement stmt = connector.getConnection().createStatement();
-        ResultSet resultSet = stmt.executeQuery("SELECT * FROM aluno");
-        System.out.println();
-        while(resultSet.next()){
-            System.out.println(resultSet.getString(2));
-        }
-
-        if(tipoUser==1){
-            //pesquisar aluno no banco
-        }
-        else{
-            //pesquisar professor no banco
-        }
-
-        
     }
 }

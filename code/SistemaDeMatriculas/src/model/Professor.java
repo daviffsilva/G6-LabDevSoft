@@ -25,7 +25,7 @@ public class Professor extends Usuario {
         this.idProfessor = idProfessor;
     }
 
-    public String nome getNome() {
+    public String getNome() {
         return nome;
     }
 
@@ -33,14 +33,8 @@ public class Professor extends Usuario {
         this.nome = nome;
     }
 
-    public List<Aluno> consultarAlunosPorDisciplina(Disciplina disciplina) {
-        List<Aluno> alunosCadastrados = new ArrayList<>();
-        
-        if (disciplina != null) {
-            alunosCadastrados = disciplina.getAlunosInscritos();
-        }
-        
-        return alunosCadastrados;
+    public List<Aluno> consultarAlunosPorTurma(Turma turma) {
+        return turma.getListAlunos();
     }
     
 }

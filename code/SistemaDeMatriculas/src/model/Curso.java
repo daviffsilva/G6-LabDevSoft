@@ -1,5 +1,7 @@
 package model;
 
+import controller.CursoController;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,13 +29,12 @@ public class Curso {
     }
 
     public void adicionarDisciplina(String nome, int codigo, Professor professor) {
-        Disciplina novaDisciplina = new Disciplina(nome, codigo, professor);
-        if (!disciplinas.contains(novaDisciplina)) {
-            disciplinas.add(novaDisciplina);
-        }
+        CursoController controller = new CursoController();
+        controller.adicionarDisciplina(nome, codigo, professor);
     }
 
     public void removerDisciplina(Disciplina disciplina) {
-        disciplinas.remove(disciplina);
+        CursoController controller = new CursoController();
+        controller.removerDisciplina(disciplina);
     }
 }

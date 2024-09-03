@@ -1,4 +1,7 @@
 package controller;
 
-public class ProfessorController {
+public class ProfessorController extends UsuarioController{
+    public ProfessorController(){
+        super("professor");
+    }
 }
